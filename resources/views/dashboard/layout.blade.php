@@ -2,128 +2,68 @@
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>--Admin UMKM--</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="{{ asset('admin') }}/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="{{ asset('admin') }}/vendors/base/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <link rel="stylesheet" href="{{ asset('admin') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="{{ asset('admin') }}/css/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="{{ asset('admin') }}/images/favicon.png" />
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>&mdash; Admin UMKM NegeriKita &mdash;</title>
+
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="{{ asset('library/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ asset('library/datatables/media/css/jquery.dataTables.min.css') }}">
+
+    @stack('style')
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/components.css') }}">
+
+    <!-- Start GA -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-94034622-3');
+    </script>
+    <!-- END GA -->
 </head>
+</head>
+
 <body>
-  <div class="container-scroller">
-    <!-- partial:partials/_navbar.html -->
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-      <div class="navbar-brand-wrapper d-flex justify-content-center">
-        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-          <a class="navbar-brand brand-logo" href="index.html"><img src="{{ asset('admin') }}/images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ asset('admin') }}/images/logo-mini.svg" alt="logo"/></a>
-          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="mdi mdi-sort-variant"></span>
-          </button>
-        </div>  
-      </div>
-      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-              <img src="{{ asset('admin') }}/images/faces/{{ Auth::user()->avatar }}" alt="profile"/>
-              <span class="nav-profile-name">{{ Auth::user()->name }}</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              {{-- <a class="dropdown-item">
-                <i class="mdi mdi-settings text-primary"></i>
-                Settings
-              </a> --}}
-              <a class="dropdown-item" href="{{ url('auth/logout') }}">
-                <i class="mdi mdi-logout text-primary"></i>
-                Logout
-              </a>
-            </div>
-          </li>
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-          <span class="mdi mdi-menu"></span>
-        </button>
-      </div>
-    </nav>
-    <!-- partial -->
-    <div class="container-fluid page-body-wrapper">
-      <!-- partial:partials/_sidebar.html -->
-      <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('sektor.index') }}">
-              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-              <span class="menu-title">Sektor UMKM</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('detail.index') }}">
-              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-              <span class="menu-title">Detail UMKM</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
-          @include('dashboard.pesan')
-          <div class="row">
-            <div class="col-md-12 stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  @yield('konten')
-                </div>
-              </div>
-            </div>
-          </div>
+    <div id="app">
+        <div class="main-wrapper">
+            <!-- Header -->
+            @include('components.header')
+
+            <!-- Sidebar -->
+            @include('components.sidebar')
+
+            <!-- Content -->
+            @yield('main')
+
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.instagram.com/nara.aanoraga/" target="_blank">@nara.aanoraga </a>2023</span>
-        </div>
-        </footer>
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
     </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
 
-  <!-- plugins:js -->
-  <script src="{{ asset('admin') }}/vendors/base/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page-->
-  <script src="{{ asset('admin') }}/vendors/chart.js/Chart.min.js"></script>
-  <script src="{{ asset('admin') }}/vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="{{ asset('admin') }}/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <!-- End plugin js for this page-->
-  <!-- inject:js -->
-  <script src="{{ asset('admin') }}/js/off-canvas.js"></script>
-  <script src="{{ asset('admin') }}/js/hoverable-collapse.js"></script>
-  <script src="{{ asset('admin') }}/js/template.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="{{ asset('admin') }}/js/dashboard.js"></script>
-  <script src="{{ asset('admin') }}/js/data-table.js"></script>
-  <script src="{{ asset('admin') }}/js/jquery.dataTables.js"></script>
-  <script src="{{ asset('admin') }}/js/dataTables.bootstrap4.js"></script>
-  <!-- End custom js for this page-->
+    <!-- General JS Scripts -->
+    <script src="{{ asset('library/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('library/popper.js/dist/umd/popper.js') }}"></script>
+    <script src="{{ asset('library/tooltip.js/dist/umd/tooltip.js') }}"></script>
+    <script src="{{ asset('library/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('library/jquery.nicescroll/dist/jquery.nicescroll.min.js') }}"></script>
+    <script src="{{ asset('library/moment/min/moment.min.js') }}"></script>
+    <script src="{{ asset('js/stisla.js') }}"></script>
 
-  <script src="{{ asset('admin') }}/js/jquery.cookie.js" type="text/javascript"></script>
+    @stack('scripts')
+
+    <!-- Template JS File -->
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 </body>
 
 </html>
