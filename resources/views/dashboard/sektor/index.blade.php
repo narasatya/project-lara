@@ -45,19 +45,17 @@
                                                     <a href="{{ route('sektor.edit', $item->id) }}"
                                                         class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
                                                         title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                    <a href="{{ route('sektor.destroy', $item->id) }}" class="btn btn-danger btn-action" data-toggle="tooltip"
-                                                        title="Hapus"
+                                                    <form
                                                         onsubmit="return confirm('Sektor ini akan dihapus. Tetap ingin dihapus??')"
-                                                        data-confirm-yes="alert('Sektor Telah dihapus')"
-                                                        method="POST"
-                                                        type="submit" name="submit">
+                                                        action="{{ route('sektor.destroy', $item->id) }}" class="d-inline"
+                                                        method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <i class="fas fa-trash"></i>
-                                                    </a>
-                                                    {{-- <form  action="{{ route('sektor.destroy', $item->id) }}" class="d-inline" method="POST">
-                                <button class="btn btn-sm btn-danger" >Del</button>
-                            </form> --}}
+                                                        <button class="btn btn-danger btn-action" type="submit"
+                                                            name="submit" data-toggle="tooltip" title="Hapus">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                             <?php $i++; ?>

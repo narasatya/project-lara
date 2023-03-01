@@ -7,11 +7,11 @@
             <a href="#">UMKM</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="{{ Request::is('dashboard-general-dashboard') ? 'active' : '' }}">
+            <li class="nav-item">
                 <a href="{{ route('sektor.index') }}" class="nav-link"><i class="fas fa-columns"></i><span>Sektor
                         UMKM</span></a>
             </li>
-            <li class="{{ Request::is('credits') ? 'active' : '' }}">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('detail.index') }}"><i class="fas fa-pencil-ruler">
                     </i> <span>Detail UMKM</span>
                 </a>
