@@ -46,12 +46,13 @@
                                                         class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
                                                         title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                     <form
-                                                        onsubmit="return confirm('Sektor ini akan dihapus. Tetap ingin dihapus??')"
+                                                        onsubmit="return confirm('Sektor ini akan dihapus. Tetap ingin hapus??')"
                                                         action="{{ route('sektor.destroy', $item->id) }}" class="d-inline"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger btn-action" type="submit"
+                                                        <button class="btn btn-danger btn-action" 
+                                                            type="submit"
                                                             name="submit" data-toggle="tooltip" title="Hapus">
                                                             <i class="fas fa-trash"></i>
                                                         </button>

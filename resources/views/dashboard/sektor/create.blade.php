@@ -30,13 +30,13 @@
                                     <a href="{{ route('sektor.index') }}" class="btn btn-secondary mr-1">
                                         Kembali
                                     </a>
+                                    <button class="btn btn-primary">Simpan</button>
+                                </div>
                             </form>
-                            <button class="btn btn-primary">Simpan</button>
+                        </span>
                     </div>
-                    </span>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection

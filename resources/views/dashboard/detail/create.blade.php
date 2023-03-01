@@ -1,135 +1,120 @@
 @extends('layouts.app')
 
 @section('main')
-    <div class="pb-3">
-        <a href="{{ route('detail.index') }}" class="btn btn-secondary">
-            << Kembali </a>
+    <div class="main-content">
+        <div class="section">
+            <div class="section-header">
+                <h1>Tambah Lapak UMKM</h1>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Tambah Lapak UMKM</h4>
+                        </div>
+                        <span>
+                            <form action="{{ route('detail.store') }}" method="post">
+                                @csrf
+                                <div class="card-body pr-5">
+                                    <table class="table-striped table-lg table" id="table-1">
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="nama_usaha">Nama Usaha UMKM/ Nama
+                                                Toko</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" required="" name="nama_usaha"
+                                                    id="nama_usaha" value="{{ Session::get('nama_usaha') }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="produk">Produk Usaha Utama</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" required="" name="produk"
+                                                    id="produk" value="{{ Session::get('produk') }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Sektor Usaha</label>
+                                            <div class="col-sm-9">
+                                                <select name="id_sektor" class="form-control" required="" id="">
+                                                    <option value="">&mdash; Sektor Usaha &mdash;</option>
+                                                    @foreach ($sektor as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->namaSektor }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="nama_pemilik">Nama Pemilik
+                                                Usaha/Toko</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" required=""
+                                                    name="nama_pemilik" id="nama_pemilik"
+                                                    value="{{ Session::get('nama_pemilik') }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="alamat">Alamat Usaha</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" required="" name="alamat"
+                                                    id="alamat" value="{{ Session::get('alamat') }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="kec">Kecamatan</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" required="" name="kec"
+                                                    id="kec" value="{{ Session::get('kec') }}"
+                                                    onkeyup="return kapital()">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="kab">Kabupaten</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" required="" name="kab"
+                                                    id="kab" value="{{ Session::get('kab') }}"
+                                                    onkeyup="return kapital1()">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="prov">Provinsi</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" required="" name="prov"
+                                                    id="prov" value="{{ Session::get('prov') }}"
+                                                    onkeyup="return kapital2()">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="jml_tk">Jumlah Tenaga
+                                                Kerja</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control" required="" name="jml_tk"
+                                                    id="jml_tk" value="{{ Session::get('jml_tk') }}"
+                                                    onkeypress="return angka(event)" min="1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label" for="telp">No Telp</label>
+                                            <div class="col-sm-9">
+                                                <input type="number" class="form-control" required="" name="telp"
+                                                    id="telp" value="{{ Session::get('telp') }}"
+                                                    onkeypress="return angka(event)" min="1">
+                                            </div>
+                                        </div>
+                                    </table>
+                                </div>
+                                <div class="card-footer text-right">
+                                    <a href="{{ route('detail.index') }}" class="btn btn-secondary mr-1">
+                                        Kembali
+                                    </a>
+                                    <button class="btn btn-primary">Simpan</button>
+                                </div>
+                            </form>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <form action="{{ route('detail.store') }}" method="POST">
-        @csrf
-        <div class="mb-3">
-            <label for="nama_usaha" class="form-label">Nama Lapak</label>
-            <input type="text" class="form-control form-control-sm @error('nama_usaha')  is-invalid @enderror"
-                name="nama_usaha" id="nama_usaha" aria-describedby="helpId" placeholder="Nama Lapak"
-                value="{{ Session::get('nama_usaha') }}">
-            @error('nama_usaha')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="produk" class="form-label">Usaha Utama</label>
-            <input type="text" class="form-control form-control-sm @error('produk')  is-invalid @enderror" name="produk"
-                id="produk" aria-describedby="helpId" placeholder="Usaha Utama" value="{{ Session::get('produk') }}">
-            @error('produk')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label class="form-label">Sektor Usaha</label>
-            <select name="id_sektor" class="form-control @error('id_sektor') is-invalid @enderror" id="">
-                <option value="">-- Sektor Usaha --</option>
-                @foreach ($sektor as $item)
-                    <option value="{{ $item->id }}">{{ $item->namaSektor }}</option>
-                @endforeach
-            </select>
-            @error('id_sektor')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-            {{-- <input type="text" class="form-control form-control-sm" name="produk" id="produk"
-                aria-describedby="helpId" placeholder="Usaha Utama" value="{{ Session::get('produk') }}"> --}}
-        </div>
-        <div class="mb-3">
-            <label for="nama_pemilik" class="form-label">Nama Pemilik</label>
-            <input type="text" class="form-control form-control-sm @error('nama_pemilik')  is-invalid @enderror"
-                name="nama_pemilik" id="nama_pemilik" aria-describedby="helpId" placeholder="Nama Pemilik"
-                value="{{ Session::get('nama_pemilik') }}">
-            @error('nama_pemilik')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="alamat" class="form-label">Alamat Lengkap</label>
-            <input type="text" class="form-control form-control-sm @error('alamat')  is-invalid @enderror" name="alamat"
-                id="alamat" aria-describedby="helpId" placeholder="Alamat" value="{{ Session::get('alamat') }}">
-            @error('sektor')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="kec" class="form-label">Kecamatan</label>
-            <input type="text" class="form-control form-control-sm @error('kec')  is-invalid @enderror" name="kec"
-                id="kec" aria-describedby="helpId" placeholder="Kecamatan" onkeyup="return kapital()"
-                value="{{ Session::get('kec') }}">
-            @error('kec')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="kab" class="form-label">Kabupaten/Kota</label>
-            <input type="text" class="form-control form-control-sm @error('kab')  is-invalid @enderror" name="kab"
-                id="kab" aria-describedby="helpId" placeholder="Kab/Kota" onkeyup="return kapital1()"
-                value="{{ Session::get('kab') }}">
-            @error('kab')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="prov" class="form-label">Provinsi</label>
-            <input type="text" class="form-control form-control-sm @error('prov')  is-invalid @enderror" name="prov"
-                id="prov" aria-describedby="helpId" placeholder="Provinsi" onkeyup="return kapital2()"
-                value="{{ Session::get('prov') }}">
-            @error('prov')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <div class="row">
-                <div class="col-auto">Jumlah Tenaga Kerja</div>
-                <div class="col-auto">
-                    <input class="form-control form-control-sm @error('jml_tk')  is-invalid @enderror" type="number"
-                        name="jml_tk" id="jml_tk" placeholder="Jumlah Tenaga Kerja" onkeypress="return angka(event)"
-                        value="{{ Session::get('jml_tk') }}" min="1">
-                    @error('jml_tk')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-            </div>
-        </div>
-        <div class="mb-3">
-            <div class="row">
-                <div class="col-auto">No Telp</div>
-                <div class="col-auto">
-                    <input class="form-control form-control-sm @error('telp')  is-invalid @enderror" type="text"
-                        name="telp" id="telp" placeholder="No Telp" onkeypress="return angka(event)"
-                        value="{{ Session::get('telp') }}">
-                    @error('telp')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-            </div>
-        </div>
-        <button class="btn btn-primary text-white" name="simpan" type="submit">Simpan</button>
-    </form>
 
     <script>
         function angka(event) {

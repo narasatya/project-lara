@@ -54,18 +54,15 @@
                                                             class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
                                                             title="Edit"><i class="fas fa-pencil-alt"></i></a>
                                                         <form
-                                                            onsubmit="return confirm('Lapak ini akan dihapus, apakah Anda yakin??')"
+                                                            onsubmit="return confirm('Lapak ini akan dihapus, Tetap ingin hapus??')"
+                                                            action="{{ route('detail.destroy', $item->id) }}"
                                                             class="d-inline" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            {{-- <button class="btn btn-danger btn-action" type="submit"
-                                                                name="submit" data-toggle="tooltip"
-                                                                title="Hapus"></button> --}}
                                                             <button class="btn btn-danger btn-action" type="submit"
-                                                                name="submit" data-toggle="tooltip" title="Hapus"
-                                                                data-confirm="Lapak ini akan dihapus, apakah Anda yakin??"
-                                                                data-confirm-yes="{{ route('detail.destroy', $item->id) }}"><i
-                                                                    class="fas fa-trash"></i></button>
+                                                                name="submit" data-toggle="tooltip" title="Hapus">
+                                                                <i class="fas fa-trash"></i>
+                                                            </button>
                                                         </form>
                                                     </td>
                                                 </tr>
