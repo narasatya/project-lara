@@ -14,59 +14,13 @@
             <div class="section-header">
                 <h1>Sektor UMKM</h1>
             </div>
-            {{-- <div class="row">
-                <div class="col-lg-7 col-md-12 col-12 col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>List Daftar Sektor Pengguna UMKM NegeriKita</h4>
-                        </div>
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table-lg table">
-                                    <thead>
-                                        <tr>
-                                            <th>Title</th>
-                                            <th>Author</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                Introduction Laravel 5
-                                                <div class="table-links">
-                                                    in <a href="#">Web Development</a>
-                                                    <div class="bullet"></div>
-                                                    <a href="#">View</a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="font-weight-600"><img
-                                                        src="{{ asset('img/avatar/avatar-1.png') }}" alt="avatar"
-                                                        width="30" class="rounded-circle mr-1"> Bagus Dwi Cahya</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
-                                                    title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"
-                                                    data-confirm="Are You Sure?|This action can not be undone. Do you want to continue?"
-                                                    data-confirm-yes="alert('Deleted')"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
             <div class="row">
                 <div class="col-lg-7 col-md-12 col-12 col-sm-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>List Sektor Pengguna UMKM NegeriKita</h4>
                             <div class="card-header-action">
-                                <a href="#" class="btn btn-primary">+ Tambah Sektor</a>
+                                <a href="{{ route('sektor.create') }}" class="btn btn-primary">+ Tambah Sektor</a>
                             </div>
                         </div>
                         <div class="card-body p-0">
@@ -91,11 +45,11 @@
                                                     <a href="{{ route('sektor.edit', $item->id) }}"
                                                         class="btn btn-primary btn-action mr-1" data-toggle="tooltip"
                                                         title="Edit"><i class="fas fa-pencil-alt"></i></a>
-                                                    <a class="btn btn-danger btn-action" data-toggle="tooltip"
+                                                    <a href="{{ route('sektor.destroy', $item->id) }}" class="btn btn-danger btn-action" data-toggle="tooltip"
                                                         title="Hapus"
                                                         onsubmit="return confirm('Sektor ini akan dihapus. Tetap ingin dihapus??')"
                                                         data-confirm-yes="alert('Sektor Telah dihapus')"
-                                                        action="{{ route('sektor.destroy', $item->id) }}" method="POST"
+                                                        method="POST"
                                                         type="submit" name="submit">
                                                         @csrf
                                                         @method('DELETE')

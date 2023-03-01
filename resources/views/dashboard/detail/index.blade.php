@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Credits')
+{{-- @section('title', 'Credits')
 
 @push('style')
     <!-- CSS Libraries -->
-@endpush
+@endpush --}}
 
 @section('main')
     <div class="main-content">
@@ -20,7 +20,7 @@
                             <div class="card-header">
                                 <h4>Detail Pengguna UMKM NegeriKita</h4>
                                 <div class="card-header-action">
-                                    <a href="#" class="btn btn-primary">+ Tambah Lapak</a>
+                                    <a href="{{ route('detail.create') }}" class="btn btn-primary">+ Tambah Lapak</a>
                                 </div>
                             </div>
                             <div class="card-body">

@@ -1,18 +1,44 @@
-@extends('dashboard.layout')
+@extends('layouts.app')
 
-@section('konten')
-  <div class="pb-3">
-    <a href="{{ route('sektor.index') }}" class="btn btn-secondary">
-      << Kembali
-    </a>
-  </div>
-  <form action="{{ route('sektor.store') }}" method="POST">
-    @csrf
-    <div class="mb-3">
-      <label for="sektor" class="form-label">Nama Sektor UMKM</label>
-      <input type="text"
-        class="form-control form-control-sm" name="namaSektor" id="namaSektor" aria-describedby="helpId" placeholder="Nama Sektor" value="{{ Session::get('namaSektor') }}">
+@section('main')
+<div class="main-content">
+  <div class="section">
+    <div class="section-header">
+      <h1>Tambah Sektor UMKM</h1>
     </div>
-    <button class="btn btn-primary text-white" name="simpan" type="submit">Simpan</button>
-  </form>
+    <div class="row">
+      <div class="col-lg-7 col-md-12 col-12 col-sm-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>Tambah Sektor UMKM</h4>
+          </div>
+          <span>
+            <div class="card-body pr-5">
+              <table class="table-striped table-lg table" id="table-1">
+                <form action="{{ route('sektor.store') }}" method="post">
+                  @csrf
+                  <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Nama Sektor UMKM</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" required="" name="namaSektor" id="namaSektor" value="{{ Session::get('namaSektor') }}">
+                        <div class="invalid-feedback">
+                            What's your name?
+                        </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-right">
+                    <a href="{{ route('sektor.index') }}" class="btn btn-secondary mr-1">
+                      Kembali
+                    </a>
+                    <button class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </table>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

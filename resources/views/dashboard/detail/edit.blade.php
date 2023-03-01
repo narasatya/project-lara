@@ -1,6 +1,6 @@
-@extends('dashboard.layout')
+@extends('layouts.app')
 
-@section('konten')
+@section('main')
     <div class="pb-3">
         <a href="{{ route('detail.index') }}" class="btn btn-secondary">
             << Kembali </a>
